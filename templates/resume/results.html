@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+
+{% block title %}Analysis Results - Resume ATS Checker{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-10">
+        <div class="card mb-4">
+            <div class="card-header">
+                <h2 class="mb-0">Resume Analysis Results</h2>
+            </div>
+            <div class="card-body">
+                <!-- Profile Information -->
+                <div class="mb-4">
+                    <h3>Profile Information</h3>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <p><strong>Name:</strong> {{ profile_info.name }}</p>
+                        </div>
+                        <div class="col-md-4">
+                            <p><strong>Email:</strong> {{ profile_info.email }}</p>
+                        </div>
+                        <div class="col-md-4">
+                            <p><strong>Phone:</strong> {{ profile_info.phone }}</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Overall Score -->
+                <div class="mb-4">
+                    <h3>Overall ATS Score</h3>
+                    <div class="progress" style="height: 25px;">
+                        <div class="progress-bar {% if analysis.overall_score >= 70 %}bg-success{% elif analysis.overall_score >= 50 %}bg-warning{% else %}bg-danger{% endif %}" 
+                             role="progressbar" 
+                             style="width: {{ analysis.overall_score }}%"
+                             aria-valuenow="{{ analysis.overall_score }}" 
+                             aria-valuemin="0" 
+                             aria-valuemax="100">
+                            {{ analysis.overall_score }}%
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Analysis Results -->
+                <div class="mb-4">
+                    <h3>Detailed Analysis</h3>
+                    <div class="analysis-content">
+                        {{ analysis.analysis_result|linebreaks }}
+                    </div>
+                </div>
+
+                <!-- Download Report -->
+                <div class="text-center">
+                    <a href="{% url 'resume_analyzer:download_report' analysis.id %}" 
+                       class="btn btn-primary">
+                        Download PDF Report
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
