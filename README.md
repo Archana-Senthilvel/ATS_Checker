@@ -30,8 +30,9 @@ ATS Checker is a web application designed to analyze resumes for compatibility w
 Open your browser and visit http://127.0.0.1:8000.
 
 ## Usage
-Navigate to the upload page and upload your resume (PDF format only).
 
-Wait for the analysis to complete.
+- Navigate to the upload page and upload your resume (PDF format only).
 
-View the detailed results page for insights into your resume.
+- Wait for the analysis to complete.
+
+- View the detailed results page for insights into your resume.
